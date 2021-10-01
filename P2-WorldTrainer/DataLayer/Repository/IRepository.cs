@@ -11,5 +11,8 @@ namespace DataLayer.Repository
     {
         void Add(User user);
         void AddTrainer(Trainer trainer);
+        User checkUser(User user);
+        Trainer checkTrainer(string Email,string Password);
+
     }
 }

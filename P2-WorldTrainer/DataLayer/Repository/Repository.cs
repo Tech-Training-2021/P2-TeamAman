@@ -31,5 +31,14 @@ namespace DataLayer.Repository
                 _context.SaveChanges();
             }
         }
+        public User checkUser(User user)
+        {
+            return _context.Users.Where(x => x.Email == user.Email && x.Password == user.Password).FirstOrDefault();
+        }
+        public Trainer checkTrainer(string Email,string Password)
+        {
+            return _context.Trainers.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
+        }
+
     }
 }

@@ -32,5 +32,15 @@ namespace P2_WorldTrainer
                 Password = pass.EncryptPassword(user.Password)
             };
         }
+        public static DataLayer.Entities.User Map(Models.Login user)
+        {
+            Encryption pass = new Encryption();
+            return new DataLayer.Entities.User()
+            {
+                Email = user.Email,
+                Password = pass.EncryptPassword(user.Password)
+            };
+        }
+
     }
 }
