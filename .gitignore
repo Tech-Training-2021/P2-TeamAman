@@ -1,0 +1,8 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/P2-WorldTrainer/P2-WorldTrainer/obj
+/.vs/WorldTrainer/v16
+/.vs
+/P2-WorldTrainer/.vs/P2-WorldTrainer/v16
