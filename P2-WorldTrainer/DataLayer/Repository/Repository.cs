@@ -40,5 +40,22 @@ namespace DataLayer.Repository
             return _context.Trainers.Where(x => x.Email == Email && x.Password == Password).FirstOrDefault();
         }
 
+        public IEnumerable<Skill> GetSkills()
+        {
+            return _context.Skills.ToList();
+        }
+
+        public void AddTrainerData(TrainerDetail obj)
+        {
+            _context.TrainerDetails.Add(obj);
+            _context.SaveChanges();
+        }
+
+        public void AddTrainerSkill(TrainerSkill obj)
+        {
+            
+            _context.TrainerSkills.Add(obj);
+            _context.SaveChanges();
+        }
     }
 }

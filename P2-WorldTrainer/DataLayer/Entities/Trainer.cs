@@ -10,6 +10,7 @@ namespace DataLayer.Entities
         public Trainer()
         {
             TrainerDetails = new HashSet<TrainerDetail>();
+            TrainerSkills = new HashSet<TrainerSkill>();
         }
 
         public int Id { get; set; }
@@ -19,5 +20,6 @@ namespace DataLayer.Entities
         public string Password { get; set; }
 
         public virtual ICollection<TrainerDetail> TrainerDetails { get; set; }
+        public virtual ICollection<TrainerSkill> TrainerSkills { get; set; }
     }
 }

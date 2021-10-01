@@ -16,6 +16,6 @@ namespace P2_WorldTrainer.Models
         public string HighestQualification { get; set; }
         [Required]
 
-        public List<Skill> Skill_Id { get; set; }
+        public ICollection<int> Skill_Id { get; set; }
     }
 }

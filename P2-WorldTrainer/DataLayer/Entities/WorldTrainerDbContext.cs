@@ -69,6 +69,8 @@ namespace DataLayer.Entities
 
             modelBuilder.Entity<TrainerDetail>(entity =>
             {
+                entity.HasIndex(e => e.TrainerId, "IX_TrainerDetails_Trainer_Id");
+
                 entity.Property(e => e.HighestQualification)
                     .IsRequired()
                     .HasMaxLength(100)
@@ -85,22 +87,24 @@ namespace DataLayer.Entities
 
             modelBuilder.Entity<TrainerSkill>(entity =>
             {
-                entity.HasNoKey();
-
                 entity.ToTable("TrainerSkill");
+
+                entity.HasIndex(e => e.SkillId, "IX_TrainerSkill_Skill_Id");
+
+                entity.HasIndex(e => e.TrainerId, "IX_TrainerSkill_Trainer_Id");
 
                 entity.Property(e => e.SkillId).HasColumnName("Skill_Id");
 
                 entity.Property(e => e.TrainerId).HasColumnName("Trainer_Id");
 
                 entity.HasOne(d => d.Skill)
-                    .WithMany()
+                    .WithMany(p => p.TrainerSkills)
                     .HasForeignKey(d => d.SkillId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__TrainerSk__Skill__656C112C");
 
                 entity.HasOne(d => d.Trainer)
-                    .WithMany()
+                    .WithMany(p => p.TrainerSkills)
                     .HasForeignKey(d => d.TrainerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__TrainerSk__Train__6477ECF3");

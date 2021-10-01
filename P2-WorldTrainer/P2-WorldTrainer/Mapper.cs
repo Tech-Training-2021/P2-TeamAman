@@ -41,6 +41,23 @@ namespace P2_WorldTrainer
                 Password = pass.EncryptPassword(user.Password)
             };
         }
+        public static DataLayer.Entities.TrainerDetail Map(Models.AddMoreTrainerDetails obj,int id)
+        {
+            return new DataLayer.Entities.TrainerDetail()
+            {
+               Experience=obj.Experience,
+               HighestQualification=obj.HighestQualification,
+               TrainerId = id
+            };
+        }
+        public static DataLayer.Entities.TrainerSkill MapSkill(int skillId, int id)
+        {
+            return new DataLayer.Entities.TrainerSkill()
+            {
+                SkillId = skillId,
+                TrainerId = id
+            };
+        }
 
     }
 }

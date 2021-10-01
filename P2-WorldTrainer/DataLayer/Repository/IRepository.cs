@@ -13,6 +13,9 @@ namespace DataLayer.Repository
         void AddTrainer(Trainer trainer);
         User checkUser(User user);
         Trainer checkTrainer(string Email,string Password);
+        IEnumerable<Skill> GetSkills();
+        void AddTrainerData(TrainerDetail obj);
+        void AddTrainerSkill(TrainerSkill obj);
 
     }
 }
