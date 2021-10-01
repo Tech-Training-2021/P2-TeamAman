@@ -22,7 +22,6 @@ namespace P2_WorldTrainer.Models
         [RegularExpression("^[A-Za-z0-9._%+-]*@[A-Za-z0-9.-]*\\.[A-Za-z0-9-]{2,}$",
         ErrorMessage = "**Email must be properly formatted.")]
         public string Email { get; set; }
-        [Required]
 
 
         public string Role { get; set; }
