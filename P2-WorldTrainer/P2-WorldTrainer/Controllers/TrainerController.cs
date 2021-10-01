@@ -12,5 +12,9 @@ namespace P2_WorldTrainer.Controllers
         {
             return View();
         }
+        public IActionResult AddDetails()
+        {
+            return View();
+        }
     }
 }
