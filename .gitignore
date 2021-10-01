@@ -6,3 +6,6 @@
 /.vs/WorldTrainer/v16
 /.vs
 /P2-WorldTrainer/.vs/P2-WorldTrainer/v16
+/P2-WorldTrainer/DataLayer/obj
+/P2-WorldTrainer/DataLayer/bin/Debug/net5.0
+/P2-WorldTrainer/P2-WorldTrainer/bin/Debug/net5.0

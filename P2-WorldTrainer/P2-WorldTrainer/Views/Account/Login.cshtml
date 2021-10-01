@@ -1,0 +1,36 @@
+﻿@using P2_WorldTrainer.Models
+@model Login
+@{
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col col-md-3"></div>
+        <div class="col col-md-6">
+            <form>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role">
+                        <option>Select role</option>
+                        <option>Trainer</option>
+                        <option>User</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login" class="btn btn-primary" />
+                    <a class="btn btn-primary" href="">Register</a>
+                </div>
+            </form>
+        </div>
+        <div class="col col-md-3"></div>
+
+    </div>
+</div>
