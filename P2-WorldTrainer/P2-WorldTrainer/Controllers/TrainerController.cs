@@ -32,17 +32,61 @@ namespace P2_WorldTrainer.Controllers
         [HttpPost]
         public IActionResult AddDetails(Models.AddMoreTrainerDetails obj)
         {
-            int id = 1;
+            int user_id = Convert.ToInt32(HttpContext.Request.Cookies["user_id"]);
             if (ModelState.IsValid)
             {
-                repo.AddTrainerData(Mapper.Map(obj, id));
+                repo.AddTrainerData(Mapper.Map(obj, user_id));
                 foreach (int skillId in obj.Skill_Id)
                 {
-                    repo.AddTrainerSkill(Mapper.MapSkill(skillId, id));
+                    repo.AddTrainerSkill(Mapper.MapSkill(skillId, user_id));
                 }
                 return RedirectToAction("Index", "Home");
             }
             ModelState.AddModelError("", "Please Fill all Data");
+            return RedirectToAction("AddDetails");
+        }
+
+        public IActionResult Details()
+        {
+            int user_id = Convert.ToInt32(HttpContext.Request.Cookies["user_id"]);
+            ViewBag.id = user_id;
+            return View(Mapper.Map(repo.GetTrainerById(user_id)));
+        }
+
+        public IActionResult EditUser()
+        {
+            int user_id = Convert.ToInt32(HttpContext.Request.Cookies["user_id"]);
+            Trainer data = repo.EditUserDetail(user_id);
+            Models.EditProfile reg = new Models.EditProfile()
+            {
+                // Id = data.Id,
+                FirstName = data.FirstName,
+                LastName = data.LastName,
+                Email = data.Email,
+            };
+            return View(reg);
+        }
+        [HttpPost]
+        public IActionResult UpdateDetails(Models.EditProfile reg)
+        {
+            Trainer obj = new Trainer();
+            obj.Id = Convert.ToInt32(HttpContext.Request.Cookies["user_id"]);
+            obj.FirstName = reg.FirstName;
+            obj.LastName = reg.LastName;
+            obj.Email = reg.Email;
+
+            repo.UpdateData(obj);
+            return RedirectToAction("Details");
+        }
+        public IActionResult EditionalDetail()
+        {
+           int user_id = Convert.ToInt32(HttpContext.Request.Cookies["user_id"]);
+            var data = repo.GetMoreDetail(user_id);
+            var skills = repo.GetSkillName(user_id);
+            if (data != null && skills!=null)
+            {
+                return View(Mapper.Map(data, skills));
+            }
             return RedirectToAction("AddDetails");
         }
     }

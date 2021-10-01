@@ -39,7 +39,11 @@ namespace P2_WorldTrainer.Controllers
                     var u = repo.checkUser(Mapper.Map(user));
                     if (u != null)
                     {
-                        CookieOptions user_id = new CookieOptions();
+                        CookieOptions option = new CookieOptions();
+                        option.Expires = DateTime.Now.AddDays(2);
+                        Response.Cookies.Append("user_id", u.Id.ToString(), option);
+                        Response.Cookies.Append("userrole", user.Role.ToString(), option);
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -55,7 +59,11 @@ namespace P2_WorldTrainer.Controllers
                     var u = repo.checkTrainer(user.Email,EncryptedPass);
                     if (u != null)
                     {
-                        //HttpCookie cookie = new HttpCookie("User_id", (u.Id).ToString());
+                        CookieOptions option = new CookieOptions();
+                        option.Expires = DateTime.Now.AddDays(2);
+                        Response.Cookies.Append("user_id", u.Id.ToString(), option);
+                        Response.Cookies.Append("userrole", user.Role.ToString(), option);
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
@@ -86,16 +94,28 @@ namespace P2_WorldTrainer.Controllers
                 if (user.Role == "User")
                 {
                     repo.Add(Mapper.Map(user));
-                    return View("Login");
+                    return RedirectToAction("Login");
                 }
                 else if (user.Role == "Trainer")
                 {
                     repo.AddTrainer(Mapper.MapT(user));
-                    return View("Login");
+                    return RedirectToAction("Login");
                 }
             }
             return RedirectToAction("Register");
         }
-       
+       public IActionResult Logout()
+        {
+            if (Request.Cookies["user_id"] != null)
+            {
+                Response.Cookies.Delete("user_id");
+            }
+            if (Request.Cookies["userrole"] != null)
+            {
+                Response.Cookies.Delete("userrole");
+            }
+
+            return RedirectToAction("Login");
+        }
     }
 }

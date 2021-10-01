@@ -58,6 +58,23 @@ namespace P2_WorldTrainer
                 TrainerId = id
             };
         }
-
+        public static Models.Register Map(DataLayer.Entities.Trainer trainer)
+        {
+            return new Models.Register()
+            {
+                FirstName = trainer.FirstName,
+                LastName = trainer.LastName,
+                Email = trainer.Email,
+            };
+        }
+        public static Models.EditionalDetail Map(DataLayer.Entities.TrainerDetail trainer,List<string> list)
+        {
+            return new Models.EditionalDetail()
+            {
+               Experience=trainer.Experience,
+               HighestQualification=trainer.HighestQualification,
+               Skills=list
+            };
+        }
     }
 }

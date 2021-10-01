@@ -16,6 +16,12 @@ namespace DataLayer.Repository
         IEnumerable<Skill> GetSkills();
         void AddTrainerData(TrainerDetail obj);
         void AddTrainerSkill(TrainerSkill obj);
+        Trainer GetTrainerById(int id);
+        Trainer EditUserDetail(int id);
+        void UpdateData(Trainer obj);
+        TrainerDetail GetMoreDetail(int id);
+        List<string> GetSkillName(int id);
+
 
     }
 }
